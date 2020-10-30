@@ -13,7 +13,7 @@ import de.ostfalia.prog.ws20.enums.Farbe;
  *
  */  
 public interface IParadiesspiel {
-
+ 
 	/**
 	 * Dieser Konstruktor initialisiert ein Spiel indem die als Parameter
 	 * mitgegebenen Farben die einzelnen Spieler darstellen. In diesem Fall werden

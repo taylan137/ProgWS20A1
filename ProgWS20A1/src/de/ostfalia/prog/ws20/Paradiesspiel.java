@@ -18,7 +18,7 @@ public class Paradiesspiel implements IParadiesspiel {
   
 		spielerArray = new Spieler[farben.length];
 		spielerFarben = farben;
-
+ 
 		for (int i = 0; i < spielerArray.length; i++) {
 			Spieler spieler = new Spieler(farben[i]);
 			spielerArray[i] = spieler;

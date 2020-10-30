@@ -21,7 +21,7 @@ public class Wuerfel {
 			farbenArray[i] = farbe;
 			i++;
 		}
-
+ 
 		return farbenArray[((int) (Math.random() * anzahlSpieler + 1))];
 	}
 }

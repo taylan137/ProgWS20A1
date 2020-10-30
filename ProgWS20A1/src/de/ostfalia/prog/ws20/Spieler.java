@@ -22,7 +22,7 @@ public class Spieler {
 			figurenListe.add(figur);
 		}
 	}
-
+ 
 	// getter/setter Methoden
 	public Farbe getFarbe() {
 		return farbe;

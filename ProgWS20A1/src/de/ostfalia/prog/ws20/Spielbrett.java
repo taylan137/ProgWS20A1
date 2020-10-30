@@ -18,7 +18,7 @@ public class Spielbrett {
 	public void loescheFigur(Figur figur) {
 		figurenAufDemFeld.remove(figur);
 	}
-
+ 
 	// getter Methode um die Figuren liste zurueckzugeben
 	public ArrayList<Figur> getFigurenAufDemFeld() {
 		return figurenAufDemFeld;

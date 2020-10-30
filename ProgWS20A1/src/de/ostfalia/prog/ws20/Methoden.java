@@ -16,7 +16,7 @@ public class Methoden {
 		String[] confArray = editedConf.split(":");
 		return confArray;
 	}  
-
+ 
 	public static String[] farbenSotieren(String[] conf, Farbe... farben) {
 
 		ArrayList<String> confList = new ArrayList<String>();

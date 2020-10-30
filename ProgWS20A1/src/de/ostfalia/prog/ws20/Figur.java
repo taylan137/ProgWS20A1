@@ -7,7 +7,7 @@ public class Figur {
 
 	// Standard Figur Klasse mit 3 Attributen, 2 Konstrukturen mit getter/setter
 	// Methoden 
-
+ 
 	private Farbe farbe;
 	private Buchstabe buchstabe;
 	private int position;

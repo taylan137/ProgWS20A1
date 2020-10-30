@@ -30,7 +30,7 @@ public class Aufgabe1Test {
 	@Rule
 	public TestRule timeout = new DisableOnDebug(
 			new Timeout(500, TimeUnit.MILLISECONDS));
-
+ 
 	@Before
 	public void before() {
 	}

@@ -15,7 +15,7 @@ public class Funktion {
 		editedConf = editedConf.replaceAll(",", ":");
 		String[] confArray = editedConf.split(":");
 		return confArray;
-	}
+	} 
 
 	// hier wird der String zu Farbe(enum)
 	public static Farbe stringZuFarbe(String stringFarbe) {
