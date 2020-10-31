@@ -17,6 +17,16 @@ public class Funktion {
 		return confArray;
 	} 
 
+	
+	public static String farbeZeichenEntfernen(String figur) {
+		String farbe = figur.substring(0, figur.indexOf('-'));
+		return farbe;
+	}
+	
+	public static String buchstabeZeichenEntfernen(String figur) {
+		String buchstabe = figur.substring(figur.indexOf('-') + 1, figur.length());
+		return buchstabe;
+	}
 	// hier wird der String zu Farbe(enum)
 	public static Farbe stringZuFarbe(String stringFarbe) {
 		for (Farbe farbe : Farbe.values()) {

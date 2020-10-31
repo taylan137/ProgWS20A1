@@ -12,7 +12,7 @@ public class Paradiesspiel implements IParadiesspiel {
 	Farbe[] spielerFarben; // Array mit den Farben von den Spielern
 	Farbe farbeAmZug; // Zeigt an welche Farbe grad am Zug ist
 	Farbe gewinner = null; // Farbe vom Gewinner
-
+	int augenzahl = 0;
 	// Konstruktor ohne Konfiguration
 	public Paradiesspiel(Farbe... farben) {
   
@@ -30,17 +30,8 @@ public class Paradiesspiel implements IParadiesspiel {
 	// Konstruktor mit Konfiguration
 	public Paradiesspiel(String conf, Farbe... farben) {
 		// String conf = "GELB-A:30, GELB-B:37, BLAU-B:7"
-		// Array mit allen Spielern wird erstellt
-		spielerArray = new Spieler[farben.length];
-		// farben Array wird erstellt
-		spielerFarben = farben;
-
 		// jede Figur bekommt die Position 0 und Spieler werden erstellt
-		for (int i = 0; i < spielerArray.length; i++) {
-			Spieler spieler = new Spieler(farben[i]);
-			spielerArray[i] = spieler;
-		}
-
+		this();
 		// hier wird der String conf zu einem Array
 		String[] confArray = Funktion.stringZuArray(conf);
 
@@ -84,8 +75,8 @@ public class Paradiesspiel implements IParadiesspiel {
 	// durchgelaufen
 	@Override
 	public int getFigurposition(String figur) {
-		String farbe = figur.substring(0, figur.indexOf('-'));
-		String buchstabe = figur.substring(figur.indexOf('-') + 1, figur.length());
+		String farbe = Funktion.farbeZeichenEntfernen(figur);
+		String buchstabe = Funktion.buchstabeZeichenEntfernen(figur);
 		for (Spieler spieler : spielerArray) {
 			// Farbe wird verglichen
 			if (spieler.getFarbe().toString().equals(farbe)) {
@@ -105,8 +96,8 @@ public class Paradiesspiel implements IParadiesspiel {
 	// Methode um figuren zu bewegen
 	@Override
 	public boolean bewegeFigur(String stringFigur, int... augenzahlen) {
-		String farbe = stringFigur.substring(0, stringFigur.indexOf('-'));
-		String buchstabe = stringFigur.substring(stringFigur.indexOf('-') + 1, stringFigur.length());
+		String farbe = Funktion.farbeZeichenEntfernen(stringFigur);
+		String buchstabe = Funktion.buchstabeZeichenEntfernen(stringFigur);
 
 		// Ueberprueft ob der Spieler seine Figur bewegt, wenn ein Spieler
 		// von jemanden anderen die Figur bewegen will wird false zurueck gegeben
