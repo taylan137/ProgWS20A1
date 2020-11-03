@@ -9,6 +9,10 @@ public class Wuerfel {
 	public static int wuerfeln() {
 		return (int) (Math.random() * 6 + 1);
 	}
+	
+	public static int wuerfeln2() {
+		return (int) ((Math.random() * 6 + 1) + (Math.random() * 6 + 1));
+	}
 
 	// hier wird die Farbe gewuerfelt(Wuerfel hat genau so viele Seiten wie Spieler
 	// Anzahl)

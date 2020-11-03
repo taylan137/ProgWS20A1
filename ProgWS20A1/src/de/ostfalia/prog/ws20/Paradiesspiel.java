@@ -1,28 +1,32 @@
 package de.ostfalia.prog.ws20;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import de.ostfalia.prog.ws20.enums.Farbe;
 import de.ostfalia.prog.ws20.interfaces.IParadiesspiel;
 
 public class Paradiesspiel implements IParadiesspiel {
 
-	Spielbrett[] spielbrett = new Spielbrett[64]; // Spielbrett mit 64 Feldern
+	LinkedList<Feld> spielfeld = new LinkedList<Feld>();
 	Spieler[] spielerArray; // Array mit allen Spielern
 	Farbe[] spielerFarben; // Array mit den Farben von den Spielern
 	Farbe farbeAmZug; // Zeigt an welche Farbe grad am Zug ist
 	Farbe gewinner = null; // Farbe vom Gewinner
 	int augenzahl = 0;
+
 	// Konstruktor ohne Konfiguration
 	public Paradiesspiel(Farbe... farben) {
-  
 		spielerArray = new Spieler[farben.length];
 		spielerFarben = farben;
- 
+		spielfeld = Funktion.spielfeldErstellen(64);
+
 		for (int i = 0; i < spielerArray.length; i++) {
 			Spieler spieler = new Spieler(farben[i]);
 			spielerArray[i] = spieler;
-
+			//figuren noch aufs spielfeld positionieren
+			//conf genau das selbe 
+			//NICHT VERGESSEN!!!
 		}
 
 	}
@@ -51,14 +55,7 @@ public class Paradiesspiel implements IParadiesspiel {
 
 	}
 
-//	// spielfeld mit figuren befuellen
-//	public void spielfeldFiguren() {
-//		for(Spieler spieler : spielerArray) {
-//			for(Figur figur : spieler.getFigurenListe()) {
-//				spielbrett[figur.getPosition()].setzeFigur(figur);
-//			}
-//		}
-//	}
+
 
 	@Override
 	public Farbe getFarbeAmZug() {
@@ -96,6 +93,10 @@ public class Paradiesspiel implements IParadiesspiel {
 	// Methode um figuren zu bewegen
 	@Override
 	public boolean bewegeFigur(String stringFigur, int... augenzahlen) {
+		if (getGewinner() != null) {
+			return false;
+		}
+
 		String farbe = Funktion.farbeZeichenEntfernen(stringFigur);
 		String buchstabe = Funktion.buchstabeZeichenEntfernen(stringFigur);
 
@@ -110,7 +111,7 @@ public class Paradiesspiel implements IParadiesspiel {
 		// wenn die Figur schon am Ziel ist wird false zurueckgegeben damit man die
 		// Figur nicht bewegen kann
 		// Checkt ob es schon ein Gewinner gibt
-		if (getGewinner() != null || position == spielbrett.length - 1 || position < 0) {
+		if (position == spielfeld.size() - 1 || position < 0) {
 			return false;
 		}
 
@@ -123,16 +124,16 @@ public class Paradiesspiel implements IParadiesspiel {
 					// Buchstabe wird verglichen
 					if (figur.getBuchstabe().toString().equals(buchstabe)) {
 						// neue Position wird ausgerechnet
-						int neuePos = Funktion.positionRechner(spielbrett.length - 1, position,
+						int neuePos = Funktion.positionRechner(spielfeld.size() - 1, position,
 								Funktion.augenzahlenAddieren(augenzahlen));
+						figur.setPosition(neuePos);
 
 						// wenn neue Position im Paradies ist wird nochmal gecheckt ob es schon ein
 						// gewinner gibt
-						if (neuePos == spielbrett.length - 1) {
+						if (neuePos == spielfeld.size() - 1) {
 							getGewinner();
 						}
 						// Figur bekommt seine neue Position
-						figur.setPosition(neuePos);
 						return true;
 					}
 				}
@@ -144,6 +145,10 @@ public class Paradiesspiel implements IParadiesspiel {
 	// Methode um den Gewinner zu ermitteln und zurueckzugeben
 	@Override
 	public Farbe getGewinner() {
+
+		if (gewinner != null) {
+			return gewinner;
+		}
 		// liste mit Farben
 		ArrayList<Farbe> gewonnen = new ArrayList<>();
 		// Spieler werden wieder durchgelaufen
@@ -151,7 +156,7 @@ public class Paradiesspiel implements IParadiesspiel {
 			// Figuren werden wieder durchgelaufen
 			for (Figur figur : spieler.getFigurenListe()) {
 				// es wird geprueft ob eine Figur im Paradies steht
-				if (figur.getPosition() == spielbrett.length - 1) {
+				if (figur.getPosition() == spielfeld.size() - 1) {
 					// wenn ja wird es der Liste hinzugefuegt
 					gewonnen.add(figur.getFarbe());
 				}

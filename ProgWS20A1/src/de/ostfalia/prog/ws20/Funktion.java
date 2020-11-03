@@ -1,5 +1,7 @@
 package de.ostfalia.prog.ws20;
 
+import java.util.LinkedList;
+
 import de.ostfalia.prog.ws20.enums.Buchstabe;
 import de.ostfalia.prog.ws20.enums.Farbe;
 
@@ -76,5 +78,46 @@ public class Funktion {
 		// ansonsten alte Position zurueckgebenS
 		return pos;
 	}
+	
+	public static LinkedList<Feld> spielfeldErstellen(int anzahlFelder){
+		
+		LinkedList<Feld> spielfeld = new LinkedList<Feld>();
+		for(int idx = 0; idx < anzahlFelder; idx++) {
+		spielfeld.add(new Feld());
+		
+		if(idx == 12) {
+			spielfeld.add(new Bruecke());
+		} else {
+			spielfeld.add(new Feld());
+		}
+			
+		}
+		
+		
+		return spielfeld;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
