@@ -1,14 +1,15 @@
 package de.ostfalia.prog.ws20;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import de.ostfalia.prog.ws20.enums.Buchstabe;
 import de.ostfalia.prog.ws20.enums.Farbe;
 
 public class Funktion {
-//	klasse mit funktionen die �fters Verwendet werden
-//	in einer extra Klasse f�r mehr �bersicht
- 
+	// klasse mit funktionen die �fters Verwendet werden
+	// in einer extra Klasse f�r mehr �bersicht
+
 	// hier wird der String zu einem Array aufgeteilt
 	// "BLAU-A-30" wird zu (BLAU, A, 30)
 	public static String[] stringZuArray(String conf) {
@@ -17,18 +18,18 @@ public class Funktion {
 		editedConf = editedConf.replaceAll(",", ":");
 		String[] confArray = editedConf.split(":");
 		return confArray;
-	} 
+	}
 
-	
 	public static String farbeZeichenEntfernen(String figur) {
 		String farbe = figur.substring(0, figur.indexOf('-'));
 		return farbe;
 	}
-	
+
 	public static String buchstabeZeichenEntfernen(String figur) {
 		String buchstabe = figur.substring(figur.indexOf('-') + 1, figur.length());
 		return buchstabe;
 	}
+
 	// hier wird der String zu Farbe(enum)
 	public static Farbe stringZuFarbe(String stringFarbe) {
 		for (Farbe farbe : Farbe.values()) {
@@ -78,46 +79,28 @@ public class Funktion {
 		// ansonsten alte Position zurueckgebenS
 		return pos;
 	}
-	
-	public static LinkedList<Feld> spielfeldErstellen(int anzahlFelder){
-		
+
+	public static LinkedList<Feld> spielfeldErstellen(int anzahlFelder) {
+
 		LinkedList<Feld> spielfeld = new LinkedList<Feld>();
-		for(int idx = 0; idx < anzahlFelder; idx++) {
-		spielfeld.add(new Feld());
-		
-		if(idx == 12) {
-			spielfeld.add(new Bruecke());
-		} else {
-			spielfeld.add(new Feld());
+		for (int idx = 0; idx < anzahlFelder; idx++) {
+			spielfeld.add(new Feld(idx));
+
+			if (idx == 14 || idx == 18 || idx == 27 || idx == 32 || idx == 36 || idx == 50) {
+				spielfeld.add(new Glueck(idx));
+			} else if (idx == 12) {
+				spielfeld.add(new Bruecke(idx));
+			} else if (idx == 52) {
+				spielfeld.add(new Aufschwung(idx));
+			} else {
+				spielfeld.add(new Feld(idx));
+			}
+
 		}
-			
-		}
-		
-		
+
 		return spielfeld;
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 }

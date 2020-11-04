@@ -4,16 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Aufschwung extends Feld{
+	
+	
+	public Aufschwung(int position) {
+	super(position);
+}
 
-ArrayList<Integer> pos = new ArrayList<Integer>(Arrays.asList(new Integer[]{52}));
-	
-	
-	
-	
-	
-	public boolean pruefe(int i) {
-		
-		return pos.contains(i) ? true : false;
-		
-	}
+
 }

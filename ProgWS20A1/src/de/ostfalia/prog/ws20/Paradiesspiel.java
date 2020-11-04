@@ -22,7 +22,7 @@ public class Paradiesspiel implements IParadiesspiel {
 		spielfeld = Funktion.spielfeldErstellen(64);
 
 		for (int i = 0; i < spielerArray.length; i++) {
-			Spieler spieler = new Spieler(farben[i]);
+			Spieler spieler = new Spieler(farben[i], 0, spielfeld.get(0));
 			spielerArray[i] = spieler;
 			//figuren noch aufs spielfeld positionieren
 			//conf genau das selbe 
@@ -46,7 +46,11 @@ public class Paradiesspiel implements IParadiesspiel {
 				if (spieler.getFarbe().toString().equals(confArray[idx])) {
 					for (Figur figur : spieler.getFigurenListe()) {
 						if (figur.getBuchstabe().toString().equals(confArray[idx + 1])) {
+							
+							//hier werden die positionen geändert
+							spielfeld.get(Integer.parseInt(confArray[idx + 2])).entferneFigur(figur);
 							figur.setPosition(Integer.parseInt(confArray[idx + 2]));
+							spielfeld.get(Integer.parseInt(confArray[idx + 2])).setzeFigur(figur);
 						}
 					}
 				}
@@ -55,7 +59,7 @@ public class Paradiesspiel implements IParadiesspiel {
 
 	}
 
-
+	
 
 	@Override
 	public Farbe getFarbeAmZug() {

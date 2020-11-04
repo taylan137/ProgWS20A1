@@ -13,12 +13,12 @@ public class Spieler {
 	private int anzahlFiguren;
 
 	// Konstruktor erstellt Figuren die in die Liste hinzugef�gt werden vom Spieler
-	public Spieler(Farbe farbe) {
+	public Spieler(Farbe farbe,int pos, Feld feld) {
 		anzahlFiguren = 2;
 		this.farbe = farbe;
   
 		for (int i = 0; i < anzahlFiguren; i++) {
-			Figur figur = new Figur(farbe, Buchstabe.values()[i]);
+			Figur figur = new Figur(farbe, Buchstabe.values()[i], pos, feld);
 			figurenListe.add(figur);
 		}
 	}

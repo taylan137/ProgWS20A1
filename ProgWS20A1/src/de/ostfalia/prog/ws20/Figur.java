@@ -12,11 +12,11 @@ public class Figur {
 	private Buchstabe buchstabe;
 	private int position;
 
-	public Figur(Farbe farbe, Buchstabe buchstabe) {
-		this.farbe = farbe;
-		this.buchstabe = buchstabe;
-		this.position = 0;
-	}
+//	public Figur(Farbe farbe, Buchstabe buchstabe, Feld feld) {
+//		this.farbe = farbe;
+//		this.buchstabe = buchstabe;
+//		this.position = Feld;
+//	}
 
 	public Figur(Farbe farbe, Buchstabe buchstabe, int position) {
 		this.farbe = farbe;
